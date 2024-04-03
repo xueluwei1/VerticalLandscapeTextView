@@ -149,8 +149,8 @@ class RotatedTextView @JvmOverloads constructor(
         paint.textAlign = Paint.Align.CENTER
         paint.textSize = size
         return StaticLayout.Builder.obtain(text, 0, text.length, paint, width)
-            .setTextDirection(TextDirectionHeuristics.LTR)
-            .setAlignment(Layout.Alignment.ALIGN_NORMAL)
+            .setTextDirection(if (mIsRtl) TextDirectionHeuristics.RTL else TextDirectionHeuristics.LTR)
+            .setAlignment(if (mIsRtl) Layout.Alignment.ALIGN_OPPOSITE else Layout.Alignment.ALIGN_NORMAL)
             .setLineSpacing(0f, 1f)
             .setIncludePad(false)
             .apply {
